@@ -37,10 +37,7 @@ class TutorController extends Controller {
             'antiguedad'=> 'required',
         ]);
         $tutor = empty($request->id) ? new Tutor() : Tutor::find($request->id);
-        $tutor->nombre     = $request->nombre;
-        $tutor->email      = $request->email;
-        $tutor->antiguedad = $request->antiguedad;
-        $tutor->save();
+        $tutor->fill($request->only(['nombre','email','antiguedad']))->save();
         return redirect()->route('tutores.alta')->with('success','Tutor guardado.');
     }
 }

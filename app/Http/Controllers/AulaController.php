@@ -32,11 +32,7 @@ class AulaController extends Controller {
             'planta' => 'required|in:Primera,Segunda,Tercera',
         ]);
         $aula = empty($request->id) ? new Aula() : Aula::find($request->id);
-        $aula->nombre = $request->nombre;
-        $aula->letra  = $request->letra;
-        $aula->numero = $request->numero;
-        $aula->planta = $request->planta;
-        $aula->save();
+        $aula->fill($request->only(['nombre','letra','numero','planta']))->save();
         return redirect()->route('aulas.alta')->with('success','Aula guardada.');
     }
 }

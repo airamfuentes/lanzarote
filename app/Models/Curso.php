@@ -7,6 +7,6 @@ class Curso extends Model {
     protected $fillable = ['nombre','id_tutor'];
 
     public function tutor() {
-        return $this->belongsTo(Persona::class, 'id_tutor');
+        return $this->belongsTo(Tutor::class, 'id_tutor');
     }
 }
